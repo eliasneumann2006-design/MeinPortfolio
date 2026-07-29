@@ -1,0 +1,299 @@
+/* ============================================================
+   1. Grundlegendes Styling, Farben & Variablen
+   ============================================================ */
+:root {
+    --bg-color: #e0f2fe;        /* Sanftes Babyblau */
+    --card-bg: #ffffff;         /* Weiß für die Karten */
+    --primary: #0284c7;         /* Kräftiges Blau */
+    --primary-hover: #0369a1;   /* Dunkleres Blau für Hover */
+    --text-main: #1e293b;       /* Dunkles Grau */
+    --text-muted: #64748b;      /* Dezentere Textfarbe */
+    --accent: #f8fafc;          /* Sehr helles Grau */
+}
+
+* {
+    box-sizing: border-box; /* Wichtig für korrekte Größenberechnung */
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+}
+
+/* ============================================================
+   2. 3D-Hintergrund-Banner (Links & Rechts)
+   ============================================================ */
+/* Wir nutzen Pseudo-Elemente, um die Banner stabil zu platzieren */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    width: calc(50vw - 420px); /* Symmetrische Breite */
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Hinter dem Inhalt */
+}
+
+/* Linkes Banner */
+body::before {
+    left: 0;
+    background-image: url('banner-links.jpg'); /* Prüfe, ob die Datei existiert! */
+}
+
+/* Rechtes Banner */
+body::after {
+    right: 0;
+    background-image: url('banner-rechts.jpg'); /* Prüfe, ob die Datei existiert! */
+}
+
+/* Banner ausblenden auf schmalen Bildschirmen */
+@media (max-width: 1100px) {
+    body::before, body::after {
+        display: none;
+    }
+}
+
+/* ============================================================
+   3. Zentrierter Hauptcontainer (Karten-Stil)
+   ============================================================ */
+header, main, footer {
+    max-width: 800px;
+    margin: 0 auto 20px auto; /* Exakte Zentrierung */
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+/* ============================================================
+   4. Header Layout (Foto links, Text rechts)
+   ============================================================ */
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.header-photo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover; /* Wichtig: Das Bild passt sich perfekt an, ohne verzerrt zu werden */
+    border-radius: 12px; /* Schöne abgerundete Ecken */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtiler Schatten für Tiefenwirkung */
+    flex-shrink: 0;
+}
+
+.header-text {
+    flex-grow: 1;
+}
+
+h1 {
+    margin: 0 0 10px 0;
+    color: var(--primary);
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+}
+
+nav a {
+    padding: 8px 18px;
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+nav a:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ============================================================
+   5. Hobbys & 3D-Prisma-Slider
+   ============================================================ */
+h2 {
+    color: var(--primary);
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+/* Die Karte, die Text und 3D-Würfel hält */
+.hobby-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: var(--accent);
+    border-left: 4px solid var(--primary);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0 8px 8px 0;
+    overflow: hidden; /* Verhindert, dass der 3D-Würfel raussteht */
+}
+
+.hobby-content {
+    flex: 1;
+}
+
+.hobby-content h3 {
+    margin: 0 0 5px 0;
+}
+
+.hobby-content p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* 3D-Bühne (Der Container, der die Perspektive gibt) */
+.hobby-slider-3d-stage {
+    width: 160px; /* Breite des 3D-Bereichs */
+    height: 120px;
+    flex-shrink: 0; /* Wichtig: Behält die Größe */
+    perspective: 800px; /* Erzeugt 3D-Tiefe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Der rotierende Körper */
+.hobby-cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Wichtig für echtes 3D */
+    animation: rotatePrism 15s infinite linear; /* Etwas langsamer */
+}
+
+/* Die einzelnen Bilder */
+.hobby-cube .slide {
+    position: absolute;
+    width: 140px; /* Feste Breite für die 3D-Seiten */
+    height: 100px; /* Feste Höhe */
+    left: 10px;
+    top: 10px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    backface-visibility: hidden; /* Verbessert Performance und Optik */
+}
+
+/* 3D-Positionierung (Dreieck mit translateZ nach außen) */
+.hobby-cube .slide:nth-child(1) {
+    transform: rotateY(0deg) translateZ(45px);
+}
+
+.hobby-cube .slide:nth-child(2) {
+    transform: rotateY(120deg) translateZ(40px);
+}
+
+.hobby-cube .slide:nth-child(3) {
+    transform: rotateY(240deg) translateZ(50px);
+}
+
+/* Die Drehanimation */
+@keyframes rotatePrism {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+/* ============================================================
+   6. Footer
+   ============================================================ */
+footer {
+    text-align: center;
+    color: var(--text-muted);
+}
+
+footer p {
+    margin: 4px 0;
+}
+
+/*=============================================================
+7.Banner an der Seite
+===============================================================*/
+
+/* Linkes Banner */
+body::before {
+    left: 0;
+    background-image: url('links.jpg'); /* Hier den Namen deines linken Bildes eintragen */
+}
+
+/* Rechtes Banner */
+body::after {
+    right: 0;
+    background-image: url('rechts.jpg'); /* Hier den Namen deines rechten Bildes eintragen */
+}
+
+/* ============================================================
+   8. Lebenslauf spezifische Styles
+   ============================================================ */
+.cv-section {
+    margin-bottom: 30px;
+}
+
+.cv-entry {
+    display: flex;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--accent);
+}
+
+.cv-entry:last-child {
+    border-bottom: none;
+}
+
+.cv-time {
+    width: 160px;
+    font-weight: 600;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.cv-details {
+    flex-grow: 1;
+}
+
+.cv-details h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+.cv-details p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Skill Tags (C#, PHP, etc.) */
+.cv-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skill-tag {
+    background-color: var(--accent);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}

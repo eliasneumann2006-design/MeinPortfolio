@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeugnisse - Elias Neumann</title>
+    <!-- Einbindung der gemeinsamen CSS-Datei -->
+    <link rel="stylesheet" href="Portfoliostyle.css">
+</head>
+<body>
+
+    <!-- Kopfbereich -->
+    <header>
+        <div class="header-container">
+            <img src="Foto.jpg" alt="Profilbild von Elias Neumann" class="header-photo">
+            
+            <div class="header-text">
+                <h1>Zeugnisse & Nachweise</h1>
+                <p>Elias Neumann | Schulische Qualifikationen</p>
+                
+                <nav>
+                    <a href="startseite.php">← Zurück zur Startseite</a>
+                    <a href="Lebenslauf.php">Lebenslauf</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hauptinhalt -->
+    <main>
+        
+        <!-- SCHULISCHE ZEUGNISSE -->
+        <section class="cv-section">
+            <h2>Schulische Zeugnisse</h2>
+            
+            <article class="cv-card-simple">
+                <h3>Übersicht bisheriger Abschlüsse & Bescheinigungen</h3>
+                <p>Dieses Dokument enthält:</p>
+                <ul>
+                    <li><strong>Abschlusszeugnis (Klasse 10):</strong> Mittlere Reife an der Alexander-von-Humboldt-Mittelschule</li>
+                    <li>Notendurchschnitt: 3,00</li>
+                    <li><strong>Bescheinigung (Klasse 11):</strong> Staatliche Fachoberschule Marktredwitz (FOS)</li>
+                </ul>
+                
+                <!-- Ein einziger Button für deine PDF-Datei -->
+                <div class="cert-actions">
+                    <a href="Zeugnisse.pdf" target="_blank" class="btn-cert">Alle Zeugnisse ansehen (PDF)</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- AUSBILDUNG (ZUKUNFT/AKTUELL) -->
+        <section class="cv-section">
+            <h2>Berufsschule / Ausbildung</h2>
+            <article class="cv-card-simple">
+                <h3>BSZ Wiesau – Fachinformatiker für Anwendungsentwicklung</h3>
+                <p><strong>Status:</strong> In laufender Ausbildung</p>
+                
+                <div class="cert-actions">
+                    <a href="#" class="btn-cert disabled">Berufsschulzeugnis folgt</a>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- Fußzeile -->
+    <footer>
+        <p>© Elias Neumann</p>
+    </footer>
+
+</body>
+</html>
