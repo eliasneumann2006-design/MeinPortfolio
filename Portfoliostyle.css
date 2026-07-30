@@ -297,3 +297,91 @@ body::after {
     font-weight: 600;
     font-size: 0.9rem;
 }
+/* ============================================================
+   RESPONSIVE DESIGN (Für Smartphones & Tablets)
+   ============================================================ */
+
+/* Tablets & mobile Bildschirme (Unter 768px Breite) */
+@media (max-width: 768px) {
+
+    /* Header flexibel untereinander anordnen */
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .header-photo {
+        margin: 0 auto;
+        width: 130px;
+        height: 130px;
+    }
+
+    /* Navigations-Buttons zentrieren & gut tippbar machen */
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    nav a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        text-align: center;
+    }
+
+    /* Hauptbereich & Abstände auf Mobilgeräten anpassen */
+    main {
+        padding: 15px;
+    }
+
+    /* Hobby-Karten hochkant stapeln */
+    .hobby-card {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* 3D Slider / Bildbereich auf Handys anpassen */
+    .hobby-slider-3d-stage {
+        width: 100%;
+        max-width: 260px;
+        height: 180px;
+        margin: 0 auto;
+    }
+
+    /* Lebenslauf-Einträge auf Handys übersichtlich stapeln */
+    .cv-entry {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .cv-time {
+        min-width: auto;
+        font-weight: bold;
+        color: var(--primary);
+    }
+
+    .cv-skills {
+        justify-content: center;
+    }
+}
+
+/* Sehr kleine Handys (Unter 480px Breite) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .hobby-slider-3d-stage {
+        max-width: 220px;
+        height: 150px;
+    }
+}
